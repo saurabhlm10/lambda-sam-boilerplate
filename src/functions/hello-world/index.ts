@@ -3,6 +3,7 @@ import { successReturn } from '../../utils/successReturn.util';
 import { IHelloWorldFunctonQueryParams } from './types';
 import { errorHandler } from '../../utils/errorHandler.util';
 import { envValidator, validator } from './validator';
+import { connectToDB } from '../../config/db.config';
 
 /**
  *
@@ -31,6 +32,8 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
         };
 
         validator(validatorBody);
+
+        await connectToDB();
 
         const message = 'Hello, ' + name;
         return successReturn(message);

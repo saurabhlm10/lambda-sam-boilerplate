@@ -1,4 +1,4 @@
-import { validate } from '../../utils/validator.util';
+import { envVarValidator, validate } from '../../utils/validator.util';
 import { IHelloWorldFunctionEnvValidator, IHelloWorldFunctionQueryParamsValidator } from './types';
 
 export const validator = (data: IHelloWorldFunctionQueryParamsValidator) => {
@@ -10,10 +10,4 @@ export const envValidator = (data: IHelloWorldFunctionEnvValidator) => {
     const { ENV } = data;
 
     envVarValidator('ENV', ENV);
-};
-
-const envVarValidator = (name: string, value?: string) => {
-    if (typeof value !== 'string') {
-        throw new Error(`set ${name} in env`);
-    }
 };
