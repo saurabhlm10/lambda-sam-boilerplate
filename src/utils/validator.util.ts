@@ -7,3 +7,9 @@ export function validate(param: string, value: unknown): true {
 
     return true;
 }
+
+export const envVarValidator = (name: string, value?: string) => {
+    if (typeof value !== 'string') {
+        throw new Error(`set ${name} in env`);
+    }
+};

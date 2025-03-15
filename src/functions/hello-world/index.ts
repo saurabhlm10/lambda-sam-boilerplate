@@ -3,6 +3,7 @@ import { successReturn } from '../../utils/successReturn.util';
 import { IHelloWorldFunctonQueryParams } from './types';
 import { errorHandler } from '../../utils/errorHandler.util';
 import { envValidator, validator } from './validator';
+import { constants } from './constants';
 
 /**
  *
@@ -16,7 +17,7 @@ import { envValidator, validator } from './validator';
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
-        const { ENV = undefined } = process.env;
+        const { ENV = undefined } = constants;
 
         const envValidatorBody = {
             ENV,
