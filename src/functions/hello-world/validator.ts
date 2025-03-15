@@ -7,7 +7,8 @@ export const validator = (data: IHelloWorldFunctionQueryParamsValidator) => {
 };
 
 export const envValidator = (data: IHelloWorldFunctionEnvValidator) => {
-    const { ENV } = data;
+    const { ENV, MongoUri } = data;
 
     envVarValidator('ENV', ENV);
+    envVarValidator('MongoUri', MongoUri);
 };

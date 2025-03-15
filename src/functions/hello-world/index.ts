@@ -4,6 +4,7 @@ import { IHelloWorldFunctonQueryParams } from './types';
 import { errorHandler } from '../../utils/errorHandler.util';
 import { envValidator, validator } from './validator';
 import { connectToDB } from '../../config/db.config';
+import { constants } from './constants';
 
 /**
  *
@@ -17,12 +18,13 @@ import { connectToDB } from '../../config/db.config';
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
-        const { ENV = undefined } = process.env;
+        const { ENV, MongoUri } = constants;
 
         const envValidatorBody = {
             ENV,
+            MongoUri,
         };
-
+        console.log('envValidatorBody', envValidatorBody);
         envValidator(envValidatorBody);
 
         const { name = undefined } = (event.queryStringParameters ?? {}) as unknown as IHelloWorldFunctonQueryParams;

@@ -8,4 +8,5 @@ export interface IHelloWorldFunctionQueryParamsValidator {
 
 export interface IHelloWorldFunctionEnvValidator {
     ENV?: string;
+    MongoUri?: string;
 }

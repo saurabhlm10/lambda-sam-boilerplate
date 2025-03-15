@@ -29,7 +29,11 @@ function isValidEnumValue<T extends object>(value: unknown, enumObj: T): value i
 }
 
 export const envVarValidator = (name: string, value?: string) => {
-    if (typeof value !== 'string') {
+    if (
+        typeof value !== 'string' ||
+        // SAM template sets name as var if var not provided
+        value === name
+    ) {
         throw new Error(`set ${name} in env`);
     }
 };
